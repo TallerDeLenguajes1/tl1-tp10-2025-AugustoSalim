@@ -1,0 +1,34 @@
+﻿using System.Text.Json;
+using TareasDeEmpleado;
+
+class Program
+{
+    static async Task Main()
+    {
+        Console.WriteLine("Obteniendo tareas desde la API...");
+
+        List<Tareas> todasLasTareas = await TareaServer.ObtenerTareasAsync();
+
+        // Separar tareas pendientes y completadas
+        var pendientes = todasLasTareas.Where(t => !t.completed).ToList();
+        var completadas = todasLasTareas.Where(t => t.completed).ToList();
+
+        Console.WriteLine("\n--- TAREAS PENDIENTES ---");
+        foreach (var tarea in pendientes)
+        {
+            Console.WriteLine($"[Pendiente] ID: {tarea.id} | Usuario: {tarea.userId} | Título: {tarea.title}");
+        }
+
+        Console.WriteLine("\n--- TAREAS COMPLETADAS ---");
+        foreach (var tarea in completadas)
+        {
+            Console.WriteLine($"[Completada] ID: {tarea.id} | Usuario: {tarea.userId} | Título: {tarea.title}");
+        }
+
+        // Guardar todas las tareas en un archivo JSON
+        string json = JsonSerializer.Serialize(todasLasTareas, new JsonSerializerOptions { WriteIndented = true });
+        await File.WriteAllTextAsync("tareas.json", json);
+
+        Console.WriteLine("\nTodas las tareas se han guardado en el archivo 'tareas.json'.");
+    }
+}
