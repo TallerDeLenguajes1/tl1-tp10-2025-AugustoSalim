@@ -1,0 +1,15 @@
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\bin\Debug\net8.0\Tareas.exe
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\bin\Debug\net8.0\Tareas.deps.json
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\bin\Debug\net8.0\Tareas.runtimeconfig.json
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\bin\Debug\net8.0\Tareas.dll
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\bin\Debug\net8.0\Tareas.pdb
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\Tareas.GeneratedMSBuildEditorConfig.editorconfig
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\Tareas.AssemblyInfoInputs.cache
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\Tareas.AssemblyInfo.cs
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\Tareas.csproj.CoreCompileInputs.cache
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\Tareas.sourcelink.json
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\Tareas.dll
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\refint\Tareas.dll
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\Tareas.pdb
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\Tareas.genruntimeconfig.cache
+c:\Taller\tl1-tp10-2025-AugustoSalim\Tareas\obj\Debug\net8.0\ref\Tareas.dll
