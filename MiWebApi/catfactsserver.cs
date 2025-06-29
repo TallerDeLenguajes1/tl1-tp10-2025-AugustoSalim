@@ -5,37 +5,34 @@ namespace MiWebApi
 {
     public class CatFactServer
     {
-        // Se recomienda usar una sola instancia estática de HttpClient para toda la app
+        // Se crea una única instancia de HttpClient para toda la aplicación
         private static readonly HttpClient client = new HttpClient();
 
-        // Método asíncrono para obtener los hechos de gatos desde la API
-        public static async Task<List<CatFact>> ObtenerCatFactsAsync()
+        // Método para obtener una lista de hechos de gatos desde la API
+        public static async Task<List<CatFact>> ObtenerCatFactsAsync(int cantidad = 5)
         {
-            var url = "https://cat-fact.herokuapp.com/facts/random?amount=5";
+            var url = $"https://catfact.ninja/facts?limit={cantidad}"; // Endpoint con límite de hechos
 
-            // Realiza la solicitud GET a la URL
-            HttpResponseMessage response = await client.GetAsync(url);
+            HttpResponseMessage response = await client.GetAsync(url); // Se hace la solicitud GET
+            response.EnsureSuccessStatusCode(); // Lanza excepción si la respuesta no fue exitosa
 
-            // Verifica que la respuesta haya sido exitosa (código 200)
-            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync(); // Se obtiene el cuerpo de la respuesta como string
 
-            // Lee el contenido de la respuesta como texto
-            string responseBody = await response.Content.ReadAsStringAsync();
+            // Usamos JsonDocument para acceder al arreglo 'data' dentro del JSON
+            using JsonDocument doc = JsonDocument.Parse(responseBody);
+            var root = doc.RootElement.GetProperty("data");
 
-            // Convierte el texto JSON a una lista de objetos CatFact
-            List<CatFact> catFacts = JsonSerializer.Deserialize<List<CatFact>>(responseBody)!;
+            // Deserializamos solo la parte del JSON que contiene los hechos
+            var lista = JsonSerializer.Deserialize<List<CatFact>>(root.GetRawText())!;
 
-            return catFacts;
+            return lista;
         }
 
-        // Método para guardar los hechos obtenidos en un archivo JSON local
+        // Método para guardar los hechos en un archivo JSON en formato legible
         public static async Task GuardarCatFactsAsync(List<CatFact> catFacts)
         {
-            // Serializa la lista como JSON con formato identado
             string json = JsonSerializer.Serialize(catFacts, new JsonSerializerOptions { WriteIndented = true });
-
-            // Guarda el contenido en un archivo llamado catfacts.json
-            await File.WriteAllTextAsync("catfacts.json", json);
+            await File.WriteAllTextAsync("catfacts.json", json); // Guarda en el archivo 'catfacts.json'
         }
     }
 }

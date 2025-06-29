@@ -4,31 +4,28 @@ class Program
 {
     static async Task Main()
     {
-        Console.WriteLine("Obteniendo datos de la API de Cat Facts...\n");
+        Console.WriteLine("Obteniendo hechos de gatos desde la API...\n");
 
-        // Llama al servidor para obtener los hechos sobre gatos
-        List<CatFact> catFacts = await CatFactServer.ObtenerCatFactsAsync();
+        // Obtenemos 5 hechos (se puede cambiar la cantidad)
+        var catFacts = await CatFactServer.ObtenerCatFactsAsync(5);
 
-        // Muestra los primeros 5 hechos en consola
+        // Mostramos cada hecho en consola
         MostrarCatFacts(catFacts);
 
-        // Guarda los datos obtenidos en un archivo JSON local
+        // Guardamos la lista completa en un archivo JSON
         await CatFactServer.GuardarCatFactsAsync(catFacts);
 
-        Console.WriteLine("\nLos datos se han guardado en 'catfacts.json'.");
+        Console.WriteLine("\nLos datos fueron guardados en 'catfacts.json'.");
     }
 
-    // Muestra en pantalla los hechos obtenidos
+    // Muestra los datos en consola con una separación clara
     static void MostrarCatFacts(List<CatFact> catFacts)
     {
         foreach (var fact in catFacts)
         {
-            Console.WriteLine($"ID: {fact._id}");
-            Console.WriteLine($"Tipo: {fact.type}");
-            Console.WriteLine($"Hecho: {fact.text}");
-
-            // Línea separadora para mejor lectura visual
-            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"Hecho: {fact.fact}");
+            Console.WriteLine($"Longitud: {fact.length} caracteres");
+            Console.WriteLine(new string('-', 40)); // Línea separadora para mejor lectura
         }
     }
 }
